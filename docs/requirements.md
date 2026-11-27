@@ -1,6 +1,6 @@
 # Requirements: Distributed Job Scheduler
 
-Status: DRAFT (Day 1). Items marked **[CONFIRM]** are proposals you must decide on.
+Status: Day 1 decisions CONFIRMED. Items marked [DECIDED] were confirmed by the project owner.
 
 ## 1. MVP scope
 
@@ -24,7 +24,7 @@ authentication, cloud services, Kubernetes, exactly-once business claims.
 | `EMAIL` | Send a reminder | Simulated: logs "email sent" (no real SMTP in v1) |
 | `DATA_PROCESSING` | Batch work | Simulated: processes N records, can be told to fail for testing |
 
-**[CONFIRM]** Only `REPORT` is implemented first (Day 18). The others come later.
+**[decided]** Only `REPORT` is implemented first (Day 18). The others come later.
 Any other type is rejected with HTTP 400.
 
 ## 3. Actors
@@ -55,11 +55,11 @@ Any other type is rejected with HTTP 400.
 | `POST /api/jobs/{id}/cancel` | 200 | 404; 409 if already running/finished |
 | `GET /api/jobs/{id}/attempts` | 200 | 404 |
 
-**Time convention [CONFIRM]:** `scheduledAt` must be an ISO-8601 timestamp WITH an offset
+**Time convention [decided]:** `scheduledAt` must be an ISO-8601 timestamp WITH an offset
 (e.g. `2026-11-26T00:00:00Z` or `...+05:30`). Timestamps without an offset are rejected.
 Stored in UTC.
 
-**Validation rules [CONFIRM]:**
+**Validation rules [decided]:**
 - `jobName`: required, 1-100 chars
 - `jobType`: required, must be in the allowlist
 - `payload`: required, JSON object

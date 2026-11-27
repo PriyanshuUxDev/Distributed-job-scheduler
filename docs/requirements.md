@@ -24,9 +24,9 @@ authentication, cloud services, Kubernetes, exactly-once business claims.
 | `EMAIL` | Send a reminder | Simulated: logs "email sent" (no real SMTP in v1) |
 | `DATA_PROCESSING` | Batch work | Simulated: processes N records, can be told to fail for testing |
 
-**[decided]** Only `REPORT` is implemented first (Day 18). The others come later.
-Any other type is rejected with HTTP 400.
+**[DECIDED]** Only `REPORT` is implemented first (Day 18). The others come later.
 
+Any other type is rejected with HTTP 400.
 ## 3. Actors
 
 - Client application / developer: submits, queries, lists, cancels
@@ -46,6 +46,7 @@ Any other type is rejected with HTTP 400.
 8. As an operator, I see why a job failed.
 
 ## 5. API behavior (provisional)
+**Cancellation [DECIDED]:** cancelling a job that is running, completed, failed or already cancelled returns 409.
 
 | Endpoint | Success | Errors |
 |---|---|---|
@@ -55,11 +56,19 @@ Any other type is rejected with HTTP 400.
 | `POST /api/jobs/{id}/cancel` | 200 | 404; 409 if already running/finished |
 | `GET /api/jobs/{id}/attempts` | 200 | 404 |
 
+<<<<<<< HEAD
 **Time convention [decided]:** `scheduledAt` must be an ISO-8601 timestamp WITH an offset
 (e.g. `2026-11-26T00:00:00Z` or `...+05:30`). Timestamps without an offset are rejected.
 Stored in UTC.
 
 **Validation rules [decided]:**
+=======
+**Time convention [DECIDED]:** `scheduledAt` must be an ISO-8601 timestamp WITH an offset
+(e.g. `2026-11-26T00:00:00Z` or `...+05:30`). Timestamps without an offset are rejected.
+Stored in UTC.
+
+**Validation rules [DECIDED]:**
+>>>>>>> 4b75561 (docs: confirm Day 1 MVP requirements)
 - `jobName`: required, 1-100 chars
 - `jobType`: required, must be in the allowlist
 - `payload`: required, JSON object
